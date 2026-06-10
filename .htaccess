@@ -1,0 +1,11 @@
+# Arahkan akses folder root ke /public (pakai DirectoryIndex agar index.php jalan)
+DirectoryIndex index.php
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Jika benar-benar root (kosong), biarkan index.php yang redirect
+    RewriteRule ^$ index.php [L]
+</IfModule>
+# Blokir akses langsung ke file sensitif di root
+<FilesMatch "\.(sql|md|log)$">
+    Require all denied
+</FilesMatch>
